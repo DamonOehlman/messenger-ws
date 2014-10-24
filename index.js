@@ -9,6 +9,10 @@ var defaults = require('cog/defaults');
   This is a simple messaging implementation for sending and receiving data
   via websockets.
 
+  ## Example Usage
+
+  <<< examples/simple.js
+
 **/
 module.exports = function(url, opts) {
 
