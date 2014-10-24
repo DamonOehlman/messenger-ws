@@ -1,0 +1,36 @@
+{
+  "name": "messenger-ws",
+  "version": "1.0.0",
+  "description": "Simple messenger abstraction that sends and receives messages via a WebSocket connection",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/all.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DamonOehlman/messenger-ws.git"
+  },
+  "keywords": [
+    "messenger",
+    "websocket"
+  ],
+  "author": "Damon Oehlman <damon.oehlman@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DamonOehlman/messenger-ws/issues"
+  },
+  "homepage": "https://github.com/DamonOehlman/messenger-ws",
+  "dependencies": {
+    "cog": "^1.0.0",
+    "pull-ws": "^1.0.1",
+    "ws": "^0.4.2",
+    "wsurl": "^1.0.0"
+  },
+  "devDependencies": {
+    "mapleTree": "^0.5.1",
+    "pull-pushable": "^1.1.4",
+    "pull-stream": "^2.26.0",
+    "tape": "^3.0.1",
+    "testling": "^1.7.1"
+  }
+}
