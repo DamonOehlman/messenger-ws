@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Simple messenger abstraction that sends and receives messages via a WebSocket connection",
   "main": "index.js",
+  "stability": "unstable",
   "scripts": {
     "test": "node test/all.js && testling",
     "gendocs": "gendocs > README.md"

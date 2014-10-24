@@ -6,7 +6,7 @@ via websockets.
 
 [![NPM](https://nodei.co/npm/messenger-ws.png)](https://nodei.co/npm/messenger-ws/)
 
-[![Build Status](https://img.shields.io/travis/DamonOehlman/messenger-ws.svg?branch=master)](https://travis-ci.org/DamonOehlman/messenger-ws) 
+[![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/dominictarr/stability#unstable) [![Build Status](https://img.shields.io/travis/DamonOehlman/messenger-ws.svg?branch=master)](https://travis-ci.org/DamonOehlman/messenger-ws) 
 
 ## Example Usage
 
