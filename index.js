@@ -30,7 +30,8 @@ module.exports = function(url, opts) {
 
   function connect(callback) {
     var queue = [].concat(endpoints);
-    var timer;
+    var failTimer;
+    var successTimer;
 
     function attemptNext() {
       var socket;
@@ -41,12 +42,29 @@ module.exports = function(url, opts) {
       }
 
       socket = new WebSocket(wsurl(queue.shift()));
+      socket.addEventListener('close', handleAbnormalClose);
       socket.addEventListener('open', function() {
-        clearTimeout(timer);
-        callback(null, ps.source(socket, opts), ps.sink(socket, opts));
+        // create the source immediately to buffer any data
+        var source = ps.source(socket, opts);
+
+        successTimer = setTimeout(function() {
+          clearTimeout(failTimer);
+          callback(null, source, ps.sink(socket, opts));
+        }, 100);
       });
 
-      timer = setTimeout(attemptNext, timeout);
+      failTimer = setTimeout(attemptNext, timeout);
+    }
+
+    function handleAbnormalClose(evt) {
+      // if this was a clean close do nothing
+      if (evt.wasClean) {
+        return;
+      }
+
+      clearTimeout(successTimer);
+      clearTimeout(failTimer);
+      attemptNext();
     }
 
     attemptNext();
