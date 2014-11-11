@@ -1,7 +1,7 @@
 var WebSocketServer = require('ws').Server;
 var mapleTree = require('mapleTree');
 var port = process.env.ZUUL_PORT || process.env.PORT || 3000;
-var wss = new WebSocketServer({ port: port });
+var wss = module.exports = new WebSocketServer({ port: port });
 var router = new mapleTree.RouteTree();
 
 router.define('/read', function(ws) {
@@ -12,7 +12,7 @@ router.define('/read', function(ws) {
       ws.send(next);
     }
     else {
-      clearInterval(next);
+      clearInterval(timer);
       ws.close();
     }
   }, 100);
