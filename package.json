@@ -24,7 +24,7 @@
   "homepage": "https://github.com/DamonOehlman/messenger-ws",
   "dependencies": {
     "cog": "^1.0.0",
-    "pull-ws": "^1.0.1",
+    "pull-ws": "^2.0.0",
     "ws": "^0.4.2",
     "wsurl": "^1.0.0"
   },
