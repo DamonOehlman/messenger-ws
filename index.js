@@ -25,11 +25,17 @@ module.exports = function(url, opts) {
 
   function connect(callback) {
     var queue = [].concat(endpoints);
+    var receivedData = false;
     var failTimer;
     var successTimer;
 
     function attemptNext() {
       var socket;
+
+      function registerMessage(evt) {
+        receivedData = true;
+        (socket.removeEventListener || socket.removeListener)('message', registerMessage);
+      }
 
       // if we have no more valid endpoints, then erorr out
       if (queue.length === 0) {
@@ -42,6 +48,9 @@ module.exports = function(url, opts) {
         // create the source immediately to buffer any data
         var source = ps.source(socket, opts);
 
+        // monitor data flowing from the socket
+        socket.addEventListener('message', registerMessage);
+
         successTimer = setTimeout(function() {
           clearTimeout(failTimer);
           callback(null, source, ps.sink(socket, opts));
@@ -53,7 +62,7 @@ module.exports = function(url, opts) {
 
     function handleAbnormalClose(evt) {
       // if this was a clean close do nothing
-      if (evt.wasClean) {
+      if (evt.wasClean && receivedData && queue.length === 0) {
         return;
       }
 
