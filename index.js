@@ -23,11 +23,6 @@ module.exports = function(url, opts) {
     return url.replace(reTrailingSlash, '') + endpoint;
   });
 
-  // set defaults (close on end = true)
-  opts = defaults({}, opts, {
-    closeOnEnd: true
-  });
-
   function connect(callback) {
     var queue = [].concat(endpoints);
     var failTimer;
