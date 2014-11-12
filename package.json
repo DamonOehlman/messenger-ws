@@ -5,7 +5,7 @@
   "main": "index.js",
   "stability": "unstable",
   "scripts": {
-    "test": "node test/node.js && testling",
+    "test": "node test/node.js && testling -x firefox",
     "gendocs": "gendocs > README.md"
   },
   "repository": {
