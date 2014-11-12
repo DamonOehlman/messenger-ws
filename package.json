@@ -1,6 +1,6 @@
 {
   "name": "messenger-ws",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Simple messenger abstraction that sends and receives messages via a WebSocket connection",
   "main": "index.js",
   "stability": "unstable",
