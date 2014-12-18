@@ -43,6 +43,7 @@ module.exports = function(url, opts) {
       }
 
       socket = new WebSocket(wsurl(queue.shift()));
+      socket.addEventListener('error', handleError);
       socket.addEventListener('close', handleAbnormalClose);
       socket.addEventListener('open', function() {
         // create the source immediately to buffer any data
@@ -66,6 +67,10 @@ module.exports = function(url, opts) {
         return;
       }
 
+      return handleError();
+    }
+
+    function handleError() {
       clearTimeout(successTimer);
       clearTimeout(failTimer);
       attemptNext();
