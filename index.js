@@ -65,7 +65,9 @@ module.exports = function(url, opts) {
 
     function handleAbnormalClose(evt) {
       // if this was a clean close do nothing
-      if (evt.wasClean && receivedData) {
+      if (evt.wasClean || receivedData || queue.length === 0) {
+        clearTimeout(successTimer);
+        clearTimeout(failTimer);
         return;
       }
 
