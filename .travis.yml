@@ -4,7 +4,7 @@ node_js:
 
 notifications:
   email:
-  - developer@test.com
+  - damon.oehlman@gmail.com
 
 env:
   matrix:
