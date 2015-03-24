@@ -1,9 +1,12 @@
 var test = require('tape');
 var WebSocket = require('ws');
 var pull = require('pull-stream');
-var messenger = require('..')(require('./helpers/url'), { endpoints: ['/fail', '/read'] });
+var messenger = require('..')(require('./helpers/url'), {
+  failcodes: [ 1002 ],
+  endpoints: ['/fail', '/read']
+});
 
-test('use the messenger to read the values from the /read endpoint', function(t) {
+test('check endpoint failover', function(t) {
   t.plan(3);
 
   messenger(function(err, source, sink) {
