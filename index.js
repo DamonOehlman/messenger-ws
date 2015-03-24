@@ -3,6 +3,7 @@ var wsurl = require('wsurl');
 var ps = require('pull-ws');
 var defaults = require('cog/defaults');
 var reTrailingSlash = /\/$/;
+var DEFAULT_FAILCODES = [];
 
 /**
   # messenger-ws
@@ -19,6 +20,7 @@ var reTrailingSlash = /\/$/;
 **/
 module.exports = function(url, opts) {
   var timeout = (opts || {}).timeout || 1000;
+  var failcodes = (opts || {}).failcodes || DEFAULT_FAILCODES;
   var endpoints = ((opts || {}).endpoints || ['/']).map(function(endpoint) {
     return url.replace(reTrailingSlash, '') + endpoint;
   });
@@ -64,14 +66,17 @@ module.exports = function(url, opts) {
     }
 
     function handleAbnormalClose(evt) {
-      // if this was a clean close do nothing
-      if (evt.wasClean || receivedData || queue.length === 0) {
-        clearTimeout(successTimer);
-        clearTimeout(failTimer);
-        return;
+      var clean = evt.wasClean && (
+        evt.code === undefined || failcodes.indexOf(evt.code) < 0
+      );
+
+      // if this was not a clean close, then handle error
+      if (! clean) {
+        return handleError();
       }
 
-      return handleError();
+      clearTimeout(successTimer);
+      clearTimeout(failTimer);
     }
 
     function handleError() {
