@@ -3,10 +3,12 @@
 This is a simple messaging implementation for sending and receiving data
 via websockets.
 
+Follows the [messenger-archetype](https://github.com/DamonOehlman/messenger-archetype)
+
 
 [![NPM](https://nodei.co/npm/messenger-ws.png)](https://nodei.co/npm/messenger-ws/)
 
-[![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/dominictarr/stability#unstable) [![Build Status](https://img.shields.io/travis/DamonOehlman/messenger-ws.svg?branch=master)](https://travis-ci.org/DamonOehlman/messenger-ws) 
+[![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/dominictarr/stability#unstable) [![Build Status](https://img.shields.io/travis/DamonOehlman/messenger-ws.svg?branch=master)](https://travis-ci.org/DamonOehlman/messenger-ws) [![bitHound Score](https://www.bithound.io/github/DamonOehlman/messenger-ws/badges/score.svg)](https://www.bithound.io/github/DamonOehlman/messenger-ws) 
 
 ## Example Usage
 
@@ -37,7 +39,7 @@ setInterval(function() {
 
 ### ISC
 
-Copyright (c) 2014, Damon Oehlman <damon.oehlman@gmail.com>
+Copyright (c) 2015, Damon Oehlman <damon.oehlman@gmail.com>
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
