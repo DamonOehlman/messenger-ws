@@ -28,21 +28,6 @@ module.exports = function() {
     });
   });
 
-  function abortConnection(socket, code, name) {
-    try {
-      var response = [
-        'HTTP/1.1 ' + code + ' ' + name,
-        'Content-type: text/html'
-      ];
-      socket.write(response.concat('', '').join('\r\n'));
-    }
-    catch (e) { /* ignore errors - we've aborted this connection */ }
-    finally {
-      // ensure that an early aborted connection is shut down completely
-      try { socket.destroy(); } catch (e) {}
-    }
-  }
-
   wss.on('connection', function(ws) {
     var match = router.match(ws.upgradeReq.url);
     if (match && typeof match.fn == 'function') {
