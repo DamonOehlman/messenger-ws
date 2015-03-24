@@ -1,10 +1,16 @@
-var wss = require('./server')
-var tape = require('tape')
+var test = require('tape')
+var server
+
+test('create server', function(t) {
+  t.plan(1)
+  server = require('./server')()
+  server.listen(process.env.PORT || 3000, t.ifError)
+})
 
 require('./all')
 
-tape('teardown', function (t) {
-  wss.close()
+test('teardown', function (t) {
+  server.close()
   t.end()
 })
 
