@@ -7,4 +7,5 @@ test('wait for the server to be ready', function(t) {
 
 require('./read');
 require('./echo');
+require('./echo-reconnect');
 require('./endpoint-failover');
