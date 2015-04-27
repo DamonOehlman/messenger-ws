@@ -28,6 +28,14 @@ module.exports = function() {
     });
   });
 
+  router.define('/brittle-echo', function(ws) {
+    ws.on('message', function(data) {
+      console.log('received message: ', data);
+      ws.send(data);
+      ws.close(1002, 'Terminate');
+    });
+  });
+
   wss.on('connection', function(ws) {
     var match = router.match(ws.upgradeReq.url);
     if (match && typeof match.fn == 'function') {
