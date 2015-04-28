@@ -27,17 +27,18 @@ module.exports = function(url, opts) {
 
   function connect(callback) {
     var queue = [].concat(endpoints);
-    var receivedData = false;
+    var isConnected = false;
+    var socket;
     var failTimer;
     var successTimer;
     var removeListener;
+    var source;
 
     function attemptNext() {
-      var socket;
-
-      function registerMessage(evt) {
-        receivedData = true;
-        removeListener.call(socket, 'message', registerMessage);
+      // if we have already connected, do nothing
+      // NOTE: workaround for websockets/ws#489
+      if (isConnected) {
+        return;
       }
 
       // if we have no more valid endpoints, then erorr out
@@ -46,26 +47,40 @@ module.exports = function(url, opts) {
       }
 
       socket = new WebSocket(wsurl(queue.shift()));
+      socket.addEventListener('message', connect);
       socket.addEventListener('error', handleError);
-      socket.addEventListener('close', handleAbnormalClose);
-      socket.addEventListener('open', function() {
-        // create the source immediately to buffer any data
-        var source = ps.source(socket, opts);
-
-        // monitor data flowing from the socket
-        socket.addEventListener('message', registerMessage);
-
-        successTimer = setTimeout(function() {
-          clearTimeout(failTimer);
-          callback(null, source, ps.sink(socket, opts));
-        }, 100);
-      });
+      socket.addEventListener('close', handleClose);
+      socket.addEventListener('open', handleOpen);
 
       removeListener = socket.removeEventListener || socket.removeListener;
       failTimer = setTimeout(attemptNext, timeout);
     }
 
-    function handleAbnormalClose(evt) {
+    function connect() {
+      // if we are already connected, abort
+      // NOTE: workaround for websockets/ws#489
+      if (isConnected) {
+        return;
+      }
+
+      // clear any monitors
+      clearTimeout(failTimer);
+      clearTimeout(successTimer);
+
+      // remove the close and error listeners as messenger-ws has done
+      // what it set out to do and that is create a connection
+      // NOTE: issue websockets/ws#489 causes means this fails in ws
+      removeListener.call(socket, 'open', handleOpen);
+      removeListener.call(socket, 'close', handleClose);
+      removeListener.call(socket, 'error', handleError);
+      removeListener.call(socket, 'message', connect);
+
+      // trigger the callback
+      isConnected = true;
+      callback(null, source, ps.sink(socket, opts));
+    }
+
+    function handleClose(evt) {
       var clean = evt.wasClean && (
         evt.code === undefined || failcodes.indexOf(evt.code) < 0
       );
@@ -83,6 +98,14 @@ module.exports = function(url, opts) {
       clearTimeout(successTimer);
       clearTimeout(failTimer);
       attemptNext();
+    }
+
+    function handleOpen() {
+      // create the source immediately to buffer any data
+      source = ps.source(socket, opts);
+
+      // monitor data flowing from the socket
+      successTimer = setTimeout(connect, 100);
     }
 
     attemptNext();
