@@ -21,24 +21,33 @@ test('echo values', function(t) {
     return next;
   }
 
+  function reconnect() {
+    messenger(function(err, source, sink) {
+      if (err) {
+        return t.fail(err);
+      }
+
+      pull(
+        source,
+        // monitor disconnection
+        pull.through(null, function() {
+          if (expected.length > 0) {
+            reconnect();
+          }
+        }),
+        pull.drain(function(value) {
+          t.equal(value, expected.shift());
+
+          if (expected.length === 0) {
+            pending.end();
+          }
+        })
+      );
+
+      pull(pending = createQueue(), sink);
+    });
+  }
+
   t.plan(expected.length);
-
-  messenger(function(err, source, sink) {
-    if (err) {
-      return t.fail(err);
-    }
-
-    pull(
-      source,
-      pull.drain(function(value) {
-        t.equal(value, expected.shift());
-
-        if (expected.length === 0) {
-          pending.end();
-        }
-      })
-    );
-
-    pull(pending = createQueue(), sink);
-  });
+  reconnect();
 });
