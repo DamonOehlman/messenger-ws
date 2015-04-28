@@ -4,7 +4,7 @@ var pull = require('pull-stream');
 var messenger = require('..')(require('./helpers/url') + '/brittle-echo');
 var pushable = require('pull-pushable');
 
-test('echo values', function(t) {
+test('echo values (brittle endpoint)', function(t) {
   var expected = ['foo', 'bar', 'baz', 'boop'];
   var pending;
 
