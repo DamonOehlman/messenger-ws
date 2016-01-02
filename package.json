@@ -26,11 +26,11 @@
   "dependencies": {
     "cog": "^1.0.0",
     "pull-ws": "^2.0.0",
-    "ws": "^0.7.1",
+    "ws": "^1.0.0",
     "wsurl": "^1.0.0"
   },
   "devDependencies": {
-    "broth": "^2.0.0",
+    "broth": "^2.2.0",
     "browserify": "^9.0.3",
     "mapleTree": "^0.5.1",
     "pull-pushable": "^1.1.4",
