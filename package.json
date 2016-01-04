@@ -32,11 +32,13 @@
   "devDependencies": {
     "broth": "^2.2.0",
     "browserify": "^9.0.3",
+    "bufferutil": "^1.2.1",
     "mapleTree": "^0.5.1",
     "pull-pushable": "^1.1.4",
     "pull-stream": "^2.26.0",
     "tap-spec": "^3.0.0",
     "tape": "^4.0.0",
-    "travis-multirunner": "^3.0.0"
+    "travis-multirunner": "^3.0.0",
+    "utf-8-validate": "^1.2.1"
   }
 }
