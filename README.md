@@ -12,7 +12,7 @@ Follows the [messenger-archetype](https://github.com/DamonOehlman/messenger-arch
 
 ## `bufferutil` and `utf-8-validate`
 
-With the release of [`ws@1.0.0`](https://github.com/websockets/ws), both `bufferutil` and `utf-8-validate` are no longer included as dependencies. This is primilarly due to the fact that these are both binary addons, and cause issues when C++ is not installed, or when a C++11 compliant compiler is not installed (>= Node 4.0.0).
+With the release of [`ws@1.0.0`](https://github.com/websockets/ws), both `bufferutil` and `utf-8-validate` are no longer included as dependencies. This is primilarly due to the fact that these are both binary addons, and cause issues when a C++ compiler is not installed or not found, or when a C++11 compliant compiler is not installed (for >= Node 4.0.0. To be compliant, use >= gcc 4.8 or >= clang 3.5).
 
 ## Example Usage
 
