@@ -10,9 +10,9 @@ Follows the [messenger-archetype](https://github.com/DamonOehlman/messenger-arch
 
 [![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/dominictarr/stability#unstable) [![Build Status](https://img.shields.io/travis/DamonOehlman/messenger-ws.svg?branch=master)](https://travis-ci.org/DamonOehlman/messenger-ws) [![bitHound Score](https://www.bithound.io/github/DamonOehlman/messenger-ws/badges/score.svg)](https://www.bithound.io/github/DamonOehlman/messenger-ws)
 
-## Build Issues
+## `bufferutil` and `utf-8-validate`
 
-
+With the release of [`ws@1.0.0`](https://github.com/websockets/ws), both `bufferutil` and `utf-8-validate` are no longer included as dependencies. This is primilarly due to the fact that these are both binary addons, and cause issues when C++ is not installed, or when a C++11 compliant compiler is not installed (>= Node 4.0.0).
 
 ## Example Usage
 
