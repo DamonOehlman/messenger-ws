@@ -1,4 +1,4 @@
-var WebSocket = require('ws');
+var WebSocket = (typeof window !== 'undefined' && window.WebSocket) || require('ws');
 var wsurl = require('wsurl');
 var ps = require('pull-ws');
 var defaults = require('cog/defaults');

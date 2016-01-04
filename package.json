@@ -6,7 +6,7 @@
   "stability": "unstable",
   "scripts": {
     "test": "node test/node.js && npm run browser-test",
-    "browser-test": "browserify test/all.js | broth ./node_modules/travis-multirunner/start-$BROWSER.sh | tap-spec",
+    "browser-test": "browserify test/all.js | broth ./node_modules/travis-multirunner/start.sh | tap-spec",
     "gendocs": "gendocs > README.md"
   },
   "repository": {
@@ -26,17 +26,19 @@
   "dependencies": {
     "cog": "^1.0.0",
     "pull-ws": "^2.0.0",
-    "ws": "^0.7.1",
+    "ws": "^1.0.0",
     "wsurl": "^1.0.0"
   },
   "devDependencies": {
-    "broth": "^2.0.0",
+    "broth": "^2.2.0",
     "browserify": "^9.0.3",
+    "bufferutil": "^1.2.1",
     "mapleTree": "^0.5.1",
     "pull-pushable": "^1.1.4",
     "pull-stream": "^2.26.0",
     "tap-spec": "^3.0.0",
     "tape": "^4.0.0",
-    "travis-multirunner": "^2.1.0"
+    "travis-multirunner": "^3.0.0",
+    "utf-8-validate": "^1.2.1"
   }
 }
