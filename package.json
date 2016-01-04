@@ -6,7 +6,7 @@
   "stability": "unstable",
   "scripts": {
     "test": "node test/node.js && npm run browser-test",
-    "browser-test": "browserify test/all.js | broth ./node_modules/travis-multirunner/start-$BROWSER.sh | tap-spec",
+    "browser-test": "browserify test/all.js | broth ./node_modules/travis-multirunner/start.sh | tap-spec",
     "gendocs": "gendocs > README.md"
   },
   "repository": {
