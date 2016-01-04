@@ -8,7 +8,11 @@ Follows the [messenger-archetype](https://github.com/DamonOehlman/messenger-arch
 
 [![NPM](https://nodei.co/npm/messenger-ws.png)](https://nodei.co/npm/messenger-ws/)
 
-[![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/dominictarr/stability#unstable) [![Build Status](https://img.shields.io/travis/DamonOehlman/messenger-ws.svg?branch=master)](https://travis-ci.org/DamonOehlman/messenger-ws) [![bitHound Score](https://www.bithound.io/github/DamonOehlman/messenger-ws/badges/score.svg)](https://www.bithound.io/github/DamonOehlman/messenger-ws) 
+[![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/dominictarr/stability#unstable) [![Build Status](https://img.shields.io/travis/DamonOehlman/messenger-ws.svg?branch=master)](https://travis-ci.org/DamonOehlman/messenger-ws) [![bitHound Score](https://www.bithound.io/github/DamonOehlman/messenger-ws/badges/score.svg)](https://www.bithound.io/github/DamonOehlman/messenger-ws)
+
+## Build Issues
+
+
 
 ## Example Usage
 
