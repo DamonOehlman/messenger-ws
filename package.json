@@ -26,7 +26,7 @@
   "dependencies": {
     "cog": "^1.0.0",
     "pull-ws": "^2.0.0",
-    "ws": "^1.0.0",
+    "ws": "^7.4.6",
     "wsurl": "^1.0.0"
   },
   "devDependencies": {
